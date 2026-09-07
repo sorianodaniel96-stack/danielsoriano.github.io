@@ -214,7 +214,7 @@
         </p>
         $$ x \oplus x = 0 \quad \forall x \in \mathbb{F}_2 $$
         <p>
-          Un registro a $n$ bit non è quindi una sequenza arbitraria di flag, ma un punto in uno **spazio vettoriale affine $n$-dimensionale** $V = \mathbb{F}_2^n$ contenente esattamente $2^n$ configurazioni.
+          Un registro a $n$ bit non è quindi una sequenza arbitraria di flag, ma un punto in uno spazio vettoriale affine $n$-dimensionale</strong>strong> $V = \mathbb{F}_2^n$ contenente esattamente $2^n$ configurazioni.
         </p>
 
         <h2>2. L'Anello Quoziente e la Forma Normale Algebrica (ANF)</h2>
@@ -240,7 +240,7 @@
         </p>
         $$ \mathcal{V}(\mathcal{I}) = \left\{ \mathbf{x} \in \mathbb{F}_2^n \;\middle|\; f_k(\mathbf{x}) \oplus y_k = 0, \quad k=1,\dots,m \right\} $$
         <p>
-          Poiché l'insieme è finito, per il <em>Nullstellensatz su campi finiti</em>, ogni sottoinsieme discreto di soluzioni ammissibili forma una varietà algebrica rigida. Invertire un hash non significa procedere "all'indietro nel codice", ma **calcolare l'intersezione tra la varietà dell'algoritmo e l'iperpiano fissato dall'output**.
+          Poiché l'insieme è finito, per il <em>Nullstellensatz su campi finiti</em>, ogni sottoinsieme discreto di soluzioni ammissibili forma una varietà algebrica rigida. Invertire un hash non significa procedere "all'indietro nel codice", ma <strong>calcolare l'intersezione tra la varietà dell'algoritmo e l'iperpiano fissato dall'output</strong>strong>.
         </p>
 
         <h2>4. Sottospazi Affini e la Catena dei Riporti</h2>
@@ -257,30 +257,6 @@
           <li>Per i bit bassi, le correlazioni d'ordine superiore hanno grado monomiale minimo.</li>
           <li>La varietà non si disperde caoticamente, ma ammette <strong>sottospazi affini invariantivi</strong> ($r_{\text{lin}} \ge 2$) che possono essere risolti deterministicamente tramite matrici di Macaulay asimmetriche a costo computazionale nullo.</li>
         </ul>
-
-        <h2>5. Dal Teorema al Silicio: Bit-Packing a 64-Bit</h2>
-        <p>
-          La manipolazione algebrica simbolica su $\mathbb{F}_2$ non richiede complesse strutture dati a puntatori. L'aritmetica di campo su $\mathbb{F}_2$ mappa direttamente sulle istruzioni macchina dei moderni processori a 64 bit e delle GPU:
-        </p>
-
-        <pre><code>// Eliminazione di Gauss-Jordan bit-packed: 64 coefficienti per ciclo di clock
-void rref_row_xor(uint64_t* target_row, const uint64_t* pivot_row, size_t num_words) {
-    #pragma unroll 4
-    for (size_t w = 0; w < num_words; ++w) {
-        target_row[w] ^= pivot_row[w]; // Somma diretta su campo F2
-    }
-}</code></pre>
-
-        <p>
-          In questo modo, una matrice di Macaulay da decine di migliaia di righe e colonne occupa poche decine di megabyte di VRAM, trasformando la geometria algebrica in calcolo vettoriale ad altissimo parallelismo.
-        </p>
-      </article>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 — Ricerca Crittanalitica e Spazi Algebrici. Rilasciato sotto licenza MIT.</p>
-    </footer>
-  </div>
 
 </body>
 </html>
